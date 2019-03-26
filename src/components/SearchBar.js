@@ -8,10 +8,24 @@ class SearchBar extends React.Component {
         console.log(event.target.value);
     }
 
+    // onFormSubmit = (event) =>{ // a way to bind this (arrow function)
+    //     event.preventDefault(); //will prevent browser from automatically submiting form and refreshing whole page
+    //     console.log(this.state.term);
+    // }
+
+    onFormSubmit = (event) => { // a way to bind this (arrow function)
+        event.preventDefault(); //will prevent browser from automatically submiting form and refreshing whole page
+        // console.log(this.state.term);
+
+        //use this.props for class based component
+        this.props.onSubmit(this.state.term);
+    }
+
+    //(e) => this.onFormSubmit(e) another way in form element
     render(){
         return (
             <div className="ui segment">
-                <form className="ui form">
+                <form className="ui form" onSubmit={this.onFormSubmit}>
                     <div className="field">
                         <label>Image Search</label>
                         <input 
